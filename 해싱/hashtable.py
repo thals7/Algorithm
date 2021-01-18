@@ -29,10 +29,15 @@ class hashTable:
 # practice
 hash1 = hashTable(10)
 
-hashTable.saveData(hash1, 1, 'A')
-hashTable.saveData(hash1, 2, 'B')
-hashTable.saveData(hash1, 3, 'C')
+hash1.saveData(1, 'A')
+hash1.saveData(2, 'B')
+hash1.saveData(3, 'C')
 
-print(hashTable.getData(hash1, 1))
-print(hashTable.getData(hash1, 2))
-print(hashTable.getData(hash1, 3))
+print(hash1.getData(1))
+print(hash1.getData(2))
+print(hash1.getData(3))
+
+hash1.deleteData(1)
+print(hash1.getData(1))
+hash1.saveData(11, 'D')
+print(hash1.getData(1)) # 실행시 D가 print됨 (1과 11의 해쉬주소가 같기 때문) -> 충돌 방지 필요
