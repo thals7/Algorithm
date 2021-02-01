@@ -13,8 +13,7 @@ pseudo code
         key[v] = w(u,v) 우선순위 큐에서 key값 DECREASE
 '''
 
-
-import sys, heapq
+import sys, heapdict
 
 input = lambda: sys.stdin.readline().rstrip()
 
@@ -28,24 +27,25 @@ for _ in range(e):
     graph[j][i] = w
 
 
-def prim(graph, start):
-    key = [dict()]
+def prim(graph,start):
+    # heapdict: 리스트가 아닌 딕셔너리 형테로 heap 사용 가능하게 해줌
+    keys = heapdict.heapdict()
     pi = {}
     total_weight = 0
 
-    # 초기화
     for v in graph.keys():
-        key[v] = float('inf')
+        keys[v] = float('inf')
         pi[v] = None
-    key[start] = 0
+    keys[start] = 0
 
-    while key:
-        node = heapq.heappop(key)[0]
-        total_weight += node
+    while keys:
+        node, key = keys.popitem()
+        total_weight += key
         for adj, weight in graph[node].items():
-            if adj in key and weight < key[adj]:
-                key[adj] = weight
+            if adj in keys and weight < keys[adj]:
+                keys[adj] = weight
                 pi[adj] = node
+
     return total_weight
 
 print(prim(graph,1))
