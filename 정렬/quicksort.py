@@ -1,3 +1,4 @@
+# 1
 def partition(list, start, end):
     pivot = list[end]
     i = start # index of smaller element
@@ -17,3 +18,23 @@ def quickSort(list, start, end):
 
 lst = [int(i) for i in input().split()]
 print(quickSort(lst, 0, len(lst)-1))
+
+
+
+# 2
+def quicksort(list):
+    if len(list) <= 1:
+        return list
+    pivot = list[len(list)//2]
+    left, right, same = [], [], []
+    for i in list:
+        if i < pivot:
+            left.append(i)
+        elif i > pivot:
+            right.append(i)
+        else:
+            same.append(i)
+    return quicksort(left) + same + quicksort(right)
+
+
+
